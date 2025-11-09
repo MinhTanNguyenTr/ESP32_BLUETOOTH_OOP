@@ -1,20 +1,26 @@
 #include "MotorController.hpp"
-
+#include "../utils/Debug.hpp"
 void MotorController::begin()
 {
-    Serial.println("[Motor] ready");
+    DBG("Actuator", "Motor initialized");
 }
 
-void MotorController::setState(const String& state)
+void MotorController::setState(const String& stateStr)
 {
-    if(state == "ON") {
-        Serial.println("[Motor] Turn on");
+    String s = stateStr;
+    s.trim();
+    if(s.startsWith("SPEED")) {
+        int phd = s.substring(5).toInt();
+        if(phd < 0) phd = 0;
+        if(phd > 100) phd = 100;
+        speed = phd;
+        DBG("Motor", "Speed set to : %d", speed);
     }
     else {
-        Serial.println("[Motor] Turn off");
+        DBG("Motor", "Unknow commad: %s", stateStr.c_str());
     }
 }
 
-String MotorController::getName() cosnt {
+String MotorController::getName() const {
     return "Motor";
 }

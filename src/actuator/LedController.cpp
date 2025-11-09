@@ -1,17 +1,25 @@
 #include "LedController.hpp"
-
+#include "../utils/Debug.hpp"
 void LedController::begin()
 {
-    Serial.println("[Led] ready");
+    DBG("Actuator","Led Initialized");
 }
 
-void LedController::setState(const String& state)
+void LedController::setState(const String& stateStr)
 {
-    if ( state == "ON") {
-        Serial.println("[Led] Turn on");
+    String s = stateStr;
+    s.toUpperCase();
+    if ( s == "ON") {
+        state = true;
+        DBG("Led","Turn on");
+
+    }
+    else if ( s == "OFF") {
+        state = false;
+        DBG("Led", "Turn off");
     }
     else {
-        Serial.println("[Led] Turn off");
+        DBG("Led", "Unknow state: %s", stateStr.c_str());
     }
 }
 
