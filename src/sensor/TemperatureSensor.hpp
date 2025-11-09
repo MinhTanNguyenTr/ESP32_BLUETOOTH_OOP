@@ -5,6 +5,6 @@ class TemperatureSensor : public SensorInterface {
     private:
     public:
     void begin() override;
-    SensorData readValue() override;
+    float readValue() override;
     String getName() const override;
 };

@@ -1,9 +1,15 @@
 #pragma once
+#include <vector>
+#include <Arduino.h>
 #include "SensorInterface.hpp"
+
 class SensorManager {
-    private:
-    std::vector<SensorInterface*> _sensor;
-    public:
+public:
+    SensorManager();
+    ~SensorManager();
     void beginAll();
-    String collectData();
+    void addSensor(SensorInterface* s);
+    String collectDataJson();
+private:
+    std::vector<SensorInterface*> sensors;
 };
