@@ -3,7 +3,7 @@
 
 class LedController : public ActuatorInterface {
     private:
-    bool state = fasle;
+    bool state = false;
     public:
     LedController() = default;
     void begin() override;
