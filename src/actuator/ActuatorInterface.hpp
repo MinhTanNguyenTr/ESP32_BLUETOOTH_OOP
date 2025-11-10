@@ -5,8 +5,8 @@ class ActuatorInterface {
     private:
     public:
     ActuatorInterface() = default;
-    virtual void begin() {};
-    virtual void setState(const String& state) {};
-    virtual String getName() const {};
+    virtual void begin() = 0;
+    virtual void setState(const String& state) = 0;
+    virtual String getName() const = 0;
     virtual ~ActuatorInterface() = default;
 };
