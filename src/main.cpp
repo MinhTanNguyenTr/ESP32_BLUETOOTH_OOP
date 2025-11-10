@@ -1,18 +1,17 @@
 #include <Arduino.h>
+#include "core/SystemManager.hpp"
 
-// put function declarations here:
-int myFunction(int, int);
+SystemManager systemCtrl;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+    Serial.begin(115200);
+    delay(200);
+    Serial.println("\n=== Smart Control Hub ===");
+    randomSeed(analogRead(0));
+    systemCtrl.begin();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    systemCtrl.loop();
+    delay(10); // small yield
 }

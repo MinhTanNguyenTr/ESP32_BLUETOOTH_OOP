@@ -5,7 +5,7 @@
 
 class SensorManager {
 public:
-    SensorManager();
+    SensorManager() = default;
     ~SensorManager();
     void beginAll();
     void addSensor(SensorInterface* s);

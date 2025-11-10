@@ -11,9 +11,8 @@ void DataLogger:: log(const String& msg) {
     DBG("Logger","Logger: %s",line.c_str());
 }
 String DataLogger:: getRecent(int count) {
-     String out;
+    String out;
     String all = storageManager.readAll(fname);
-    // return last 'count' lines (simple approach)
     std::vector<String> lines;
     int start = 0;
     for (int i = 0; i < all.length();) {
