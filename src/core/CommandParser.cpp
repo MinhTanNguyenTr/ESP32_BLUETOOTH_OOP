@@ -28,6 +28,7 @@ void CommandParser::parseAnhExecute(const String& cmd)
     if(action == "READ_SENSOR" || action == "SENSOR")
     {
         String data = senMng.collectDataJson();
+        bt.sendResponse("READ_DATA");
         bt.sendResponse(data);
         logger.log("READ SENSOR" + data);
 
@@ -46,7 +47,7 @@ void CommandParser::parseAnhExecute(const String& cmd)
     {
         bt.sendResponse("PONG");
     }
-    else if ( action == "SET_LED")
+    else if ( action.equalsIgnoreCase("SET_LED"))
     {
         if(parts.size() >= 2 )
         {
@@ -59,7 +60,7 @@ void CommandParser::parseAnhExecute(const String& cmd)
         }
         else bt.sendResponse("ERR ARG");
     }
-    else if ( action == "SET_MOTOR")
+    else if ( action.equalsIgnoreCase("SET_MOTOR"))
     {
         if(parts.size() >= 3) {
             ActuatorInterface* motor = findActuatorName("Motor");
